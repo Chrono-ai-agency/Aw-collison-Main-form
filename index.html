@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AW Collision — Expense Submission</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0f172a;
+  --card:#ffffff;
+  --muted:#6b7280;
+  --text:#0f1724;
+  --accent:#ef4444;
+  --accent-strong:#dc2626;
+  --accent-soft:#fee2e2;
+  --brand:#020617;
+  --field:#f8fafc;
+  --border:#e5e7eb;
+  --shadow:0 30px 80px rgba(0,0,0,.25);
+  --radius:16px;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Inter,Arial,sans-serif;
+  background:
+    radial-gradient(1200px 600px at top,#1e293b,transparent),
+    linear-gradient(180deg,#020617,#0f172a);
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:32px;
+  color:var(--text);
+}
+
+.card{
+  width:100%;
+  max-width:760px;
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+
+.brand-bar{
+  background:linear-gradient(90deg,#020617,#020617,#7f1d1d);
+  padding:22px 28px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand-bar img{height:36px}
+.brand-bar span{
+  color:#fff;
+  font-weight:700;
+  letter-spacing:.3px;
+}
+
+.card-inner{padding:36px 40px}
+
+h1{
+  text-align:center;
+  font-size:28px;
+  font-weight:800;
+  margin:0 0 8px;
+}
+
+.subtitle{
+  text-align:center;
+  color:var(--muted);
+  font-size:14px;
+  margin-bottom:30px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:20px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+label{
+  font-size:14px;
+  font-weight:600;
+  color:#020617;
+}
+
+.required{color:var(--accent)}
+
+input,textarea,select{
+  padding:14px 15px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:var(--field);
+  font-size:14px;
+  transition:.2s ease;
+}
+
+input:focus,textarea:focus,select:focus{
+  outline:none;
+  border-color:var(--accent);
+  background:#fff;
+  box-shadow:0 0 0 4px rgba(239,68,68,.12);
+}
+
+textarea{min-height:130px;resize:vertical}
+
+.input-row{
+  display:flex;
+  gap:10px;
+}
+
+.currency{
+  padding:14px 14px;
+  background:#f1f5f9;
+  border-radius:12px;
+  border:1px solid var(--border);
+  color:var(--muted);
+  font-weight:600;
+}
+
+.actions{margin-top:8px}
+
+button{
+  width:100%;
+  padding:16px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#ef4444,#b91c1c);
+  color:#fff;
+  font-size:16px;
+  font-weight:800;
+  border:none;
+  cursor:pointer;
+  letter-spacing:.4px;
+  box-shadow:0 12px 30px rgba(239,68,68,.4);
+  transition:.2s ease;
+}
+
+button:hover{
+  transform:translateY(-1px);
+  box-shadow:0 18px 45px rgba(239,68,68,.5);
+}
+
+.footer-note{
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  margin-top:20px;
+}
+
+#successMessage{
+  display:none;
+  margin-top:24px;
+  padding:18px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#ecfdf5,#d1fae5);
+  color:#065f46;
+  text-align:center;
+  font-weight:700;
+}
+
+@media(min-width:900px){
+  .grid{grid-template-columns:1fr 1fr}
+  .span-2{grid-column:1/-1}
+}
+</style>
+</head>
+
+<body>
+
+<main class="card">
+  <div class="brand-bar">
+    <img src="https://awcollision.com/wp-content/uploads/2025/10/AW-Logo-white-2.png" alt="AW Collision Logo">
+    <span>Employee Expense Submission</span>
+  </div>
+
+  <div class="card-inner">
+    <h1>Expense Submission</h1>
+    <div class="subtitle">
+      All submissions are securely reviewed by AW Collision management
+    </div>
+
+    <form id="expenseForm">
+      <div class="grid">
+
+        <div class="field">
+          <label>Employee Name <span class="required">*</span></label>
+          <input type="text" name="employee_name" placeholder="John Smith" required>
+        </div>
+
+        <div class="field">
+          <label>Expense Amount <span class="required">*</span></label>
+          <div class="input-row">
+            <span class="currency">$</span>
+            <input type="number" step="0.01" name="amount" placeholder="0.00" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>RO Number <span style="color:#9ca3af">(Optional)</span></label>
+          <input type="text" name="ro_number" placeholder="RO-123456">
+        </div>
+
+        <div class="field">
+  <label>Email Address <span class="required">*</span></label>
+  <select name="email" required>
+    <option value="">Select your email</option>
+
+    <option value="Alex.Astts@awcollision.com">Alex Astts</option>
+    <option value="Allan.Rivera@awcollision.com">Allan Rivera</option>
+    <option value="andrea.noguera@awcollision.com">Andrea Noguera</option>
+    <option value="Ben.Lamond@awcollision.com">Ben Lamond</option>
+    <option value="Bobby@awcollision.com">Bobby Ali</option>
+    <option value="Guillermo.Guillon@awcollision.com">Guillermo Guillon</option>
+    <option value="John.Manoukian@awcollision.com">John Manoukian</option>
+    <option value="john.xiao@awcollision.com">John Xiao Xiao</option>
+    <option value="julio.flores@awcollision.com">Julio Flores</option>
+    <option value="marlena.roos@awcollision.com">Marlena Roos</option>
+    <option value="Rick.Ali@awcollision.com">Rick Ali</option>
+    <option value="Shelby.Harris@awcollision.com">Shelby Harris</option>
+    <option value="Tre.Dabney@awcollision.com">Tre Dabney</option>
+    <option value="tristan.harris@awcollision.com">Tristan Harris</option>
+    <option value="vanessa.perdomo@awcollision.com">Vanessa Perdomo</option>
+    <option value="chronoaiautomation@gmail.com">Chrono AI</option>
+    <option value="bobbyali@awcollision.com">Bobby Ali (Alt)</option>
+
+  </select>
+</div>
+
+
+        <div class="field span-2">
+          <label>Reason for Expense <span class="required">*</span></label>
+          <textarea name="reason" placeholder="Explain the reason for this expense..." required></textarea>
+        </div>
+
+        <div class="field span-2">
+          <label>Receipt (Optional)</label>
+          <input type="file" name="receipt" accept="image/*,.pdf">
+        </div>
+
+        <div class="span-2 actions">
+          <button type="submit">Submit for Approval</button>
+        </div>
+
+      </div>
+    </form>
+
+    <div id="successMessage">
+      ✅ Expense submitted successfully. Management will review it shortly.
+    </div>
+
+    <div class="footer-note">
+      Internal Use Only · AW Collision Company
+    </div>
+  </div>
+</main>
+
+<script>
+const form = document.getElementById("expenseForm");
+const success = document.getElementById("successMessage");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const data = new FormData(form);
+
+  try{
+    await fetch("https://aawcr1400.app.n8n.cloud/webhook/testingform", {
+      method:"POST",
+      body:data
+    });
+
+    form.style.display="none";
+    success.style.display="block";
+  }catch{
+    alert("Submission failed. Please try again.");
+  }
+});
+</script>
+
+</body>
+</html>
