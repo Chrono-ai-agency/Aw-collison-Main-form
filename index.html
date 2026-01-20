@@ -196,10 +196,10 @@ All submissions are securely reviewed by AW Collision management
 <form id="expenseForm">
 <div class="grid">
 
-<!-- ✅ ONLY CHANGE: EMPLOYEE NAME DROPDOWN WITH EMAIL VALUES -->
+<!-- ✅ EMPLOYEE NAME DROPDOWN -->
 <div class="field">
 <label>Employee Name <span class="required">*</span></label>
-<select name="email" required>
+<select name="email" id="employeeSelect" required>
 <option value="">Select employee</option>
 <option value="Alex.Astts@awcollision.com">Alex Astts</option>
 <option value="Allan.Rivera@awcollision.com">Allan Rivera</option>
@@ -218,7 +218,19 @@ All submissions are securely reviewed by AW Collision management
 <option value="vanessa.perdomo@awcollision.com">Vanessa Perdomo</option>
 <option value="chronoaiautomation@gmail.com">Chrono AI</option>
 <option value="bobbyali@awcollision.com">Bobby Ali (Alt)</option>
+<option value="other">Other</option>
 </select>
+</div>
+
+<!-- ✅ ONLY SHOWN WHEN "OTHER" IS SELECTED -->
+<div class="field" id="otherNameField" style="display:none;">
+<label>Your Name <span class="required">*</span></label>
+<input type="text" name="other_name" placeholder="Enter your name">
+</div>
+
+<div class="field" id="otherEmailField" style="display:none;">
+<label>Your Email <span class="required">*</span></label>
+<input type="email" name="other_email" placeholder="Enter your email">
 </div>
 
 <div class="field">
@@ -233,8 +245,6 @@ All submissions are securely reviewed by AW Collision management
 <label>RO Number <span style="color:#9ca3af">(Optional)</span></label>
 <input type="text" name="ro_number" placeholder="RO-123456">
 </div>
-
-<!-- ❌ EMAIL FIELD COMPLETELY REMOVED -->
 
 <div class="field span-2">
 <label>Reason for Expense <span class="required">*</span></label>
@@ -264,6 +274,24 @@ Internal Use Only · AW Collision Company
 </main>
 
 <script>
+const employeeSelect = document.getElementById("employeeSelect");
+const otherNameField = document.getElementById("otherNameField");
+const otherEmailField = document.getElementById("otherEmailField");
+
+employeeSelect.addEventListener("change", () => {
+  if (employeeSelect.value === "other") {
+    otherNameField.style.display = "flex";
+    otherEmailField.style.display = "flex";
+    otherNameField.querySelector("input").required = true;
+    otherEmailField.querySelector("input").required = true;
+  } else {
+    otherNameField.style.display = "none";
+    otherEmailField.style.display = "none";
+    otherNameField.querySelector("input").required = false;
+    otherEmailField.querySelector("input").required = false;
+  }
+});
+
 const form = document.getElementById("expenseForm");
 const success = document.getElementById("successMessage");
 
