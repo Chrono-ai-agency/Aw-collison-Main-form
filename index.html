@@ -8,7 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-/* 🔒 ORIGINAL STYLES — UNCHANGED */
 :root{
 --bg:#0f172a;
 --card:#ffffff;
@@ -196,7 +195,7 @@ All submissions are securely reviewed by AW Collision management
 <form id="expenseForm">
 <div class="grid">
 
-<!-- ✅ EMPLOYEE NAME DROPDOWN -->
+<!-- EMPLOYEE NAME -->
 <div class="field">
 <label>Employee Name <span class="required">*</span></label>
 <select name="email" id="employeeSelect" required>
@@ -222,7 +221,7 @@ All submissions are securely reviewed by AW Collision management
 </select>
 </div>
 
-<!-- ✅ ONLY SHOWN WHEN "OTHER" IS SELECTED -->
+<!-- OTHER NAME -->
 <div class="field" id="otherNameField" style="display:none;">
 <label>Your Name <span class="required">*</span></label>
 <input type="text" name="other_name" placeholder="Enter your name">
@@ -233,6 +232,25 @@ All submissions are securely reviewed by AW Collision management
 <input type="email" name="other_email" placeholder="Enter your email">
 </div>
 
+<!-- ✅ DEALERSHIP DROPDOWN (ONLY ADDITION) -->
+<div class="field">
+<label>Dealership Name <span class="required">*</span></label>
+<select name="dealership" required>
+<option value="">Select dealership</option>
+<option value="City Toyota">City Toyota</option>
+<option value="Honda">Honda</option>
+<option value="Lexus">Lexus</option>
+<option value="BMW">BMW</option>
+<option value="Porsche / Ferrari">Porsche / Ferrari</option>
+<option value="SF Toyota">SF Toyota</option>
+<option value="Genesis / Hyundai">Genesis / Hyundai</option>
+<option value="Nissan">Nissan</option>
+<option value="Ferrari">Ferrari</option>
+<option value="Kia / Volks">Kia / Volks</option>
+</select>
+</div>
+
+<!-- EXPENSE AMOUNT -->
 <div class="field">
 <label>Expense Amount <span class="required">*</span></label>
 <div class="input-row">
